@@ -1,10 +1,16 @@
 <template>
   <div>
     <h3>History</h3>
-    <div v-for="transaction in transactions" :key="transaction.id" class="mb-10">
+    <div
+      v-for="transaction in transactions"
+      :key="transaction.id"
+      class="mb-10"
+    >
       <div
-        @mouseover="handleHover" @mouseleave="handleHoverLeave"
-        class="flex justify-between align-items-center list" :class="transaction.amount < 0 ? 'minus' : 'plus'" 
+        @mouseover="handleHover"
+        @mouseleave="handleHoverLeave"
+        class="flex justify-between align-items-center list"
+        :class="transaction.amount < 0 ? 'minus' : 'plus'"
       >
         <div>
           <span
@@ -28,21 +34,27 @@
           <span class="list-item">{{ transaction.text }}</span>
         </div>
         <div>${{ transaction.amount }}</div>
-      </div> 
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  setup() {
+    const transactions = [
+      { id: 1, text: "Food", amount: -5.9 },
+      { id: 2, text: "Salary", amount: 2500 },
+      { id: 3, text: "Snack", amount: -3.87 },
+    ];
+
+    return {
+      transactions,
+    };
+  },
   data() {
     return {
       isHovered: false,
-      transactions: [
-        {id: 1, text: 'Food', amount: -5.90},
-        {id: 2, text: 'Salary', amount: 2500},
-        {id: 3, text: 'Snack', amount: -3.87},
-      ]
     };
   },
   methods: {
