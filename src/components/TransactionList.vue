@@ -1,10 +1,10 @@
 <template>
   <div>
     <h3>History</h3>
-    <div>
+    <div v-for="transaction in transactions" :key="transaction.id" class="mb-10">
       <div
         @mouseover="handleHover" @mouseleave="handleHoverLeave"
-        class="flex justify-between align-items-center list"
+        class="flex justify-between align-items-center list" :class="transaction.amount < 0 ? 'minus' : 'plus'" 
       >
         <div>
           <span
@@ -25,10 +25,10 @@
                 d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               ></path></svg
           ></span>
-          <span class="list-item">Cash</span>
+          <span class="list-item">{{ transaction.text }}</span>
         </div>
-        <div>-$450</div>
-      </div>
+        <div>${{ transaction.amount }}</div>
+      </div> 
     </div>
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
   data() {
     return {
       isHovered: false,
+      transactions: [
+        {id: 1, text: 'Food', amount: -5.90},
+        {id: 2, text: 'Salary', amount: 2500},
+        {id: 3, text: 'Snack', amount: -3.87},
+      ]
     };
   },
   methods: {
