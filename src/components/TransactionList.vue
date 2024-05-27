@@ -7,8 +7,6 @@
       class="mb-10"
     >
       <div
-        @mouseover="handleHover"
-        @mouseleave="handleHoverLeave"
         class="flex justify-between align-items-center list"
         :class="transaction.amount < 0 ? 'minus' : 'plus'"
       >
@@ -23,7 +21,6 @@
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              :class="isHovered ? 'x-btn2' : 'x-btn1'"
             >
               <path
                 stroke-linecap="round"
@@ -49,3 +46,19 @@ const props = defineProps({
   },
 });
 </script>
+
+<style lang="scss">
+.list:hover {
+  .x-btn {
+    opacity: 1;
+  }
+}
+
+.x-btn {
+  color: rgb(248, 67, 67);
+  width: 20px;
+  vertical-align: bottom;
+  margin-left: -32px;
+  opacity: 0;
+}
+</style>
