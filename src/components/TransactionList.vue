@@ -39,31 +39,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  setup() {
-    const transactions = [
-      { id: 1, text: "Food", amount: -5.9 },
-      { id: 2, text: "Salary", amount: 2500 },
-      { id: 3, text: "Snack", amount: -3.87 },
-    ];
+<script setup>
+import { defineProps } from "vue";
 
-    return {
-      transactions,
-    };
+const props = defineProps({
+  transactions: {
+    type: Array,
+    required: true,
   },
-  data() {
-    return {
-      isHovered: false,
-    };
-  },
-  methods: {
-    handleHover(hovered) {
-      this.isHovered = hovered;
-    },
-    handleHoverLeave() {
-      this.isHovered = false;
-    },
-  },
-};
+});
 </script>
